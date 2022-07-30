@@ -22,7 +22,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public string JoinRoomName = "RandomRoom";
 
     [Tooltip("Name of the Player object to spawn. Must be in a /Resources folder.")]
-    public string RemotePlayerObjectName = "";
+    public string TeacherName = "";
+    public string StudentName = "";
+
 
     [Tooltip("Optional GUI Text element to output debug information.")]
     public TMP_Text DebugText;
@@ -98,7 +100,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         // Network Instantiate the object used to represent our player. This will have a View on it and represent the player 
         object[] data = new object[1];
         data[0] = PhotonNetwork.LocalPlayer.UserId;
-        GameObject player = PhotonNetwork.Instantiate(RemotePlayerObjectName, SpawnTransform.position, Quaternion.identity, 0, data);
+
+        var prefabName = PhotonNetwork.IsMasterClient ? TeacherName : StudentName;
+        GameObject player = PhotonNetwork.Instantiate(prefabName, SpawnTransform.position, Quaternion.identity, 0, data);
         player.transform.SetParent(SpawnTransform);
     }
 

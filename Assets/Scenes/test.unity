@@ -232,7 +232,8 @@ MonoBehaviour:
   JoinRoomOnStart: 1
   dontDestroyOnLoad: 1
   JoinRoomName: RandomRoom
-  RemotePlayerObjectName: Voice/BunnyStudent
+  TeacherName: Voice/BearTeacher
+  StudentName: Voice/BunnyStudent
   DebugText: {fileID: 0}
   SpawnTransform: {fileID: 523612130}
 --- !u!4 &66143677
@@ -10603,6 +10604,11 @@ PrefabInstance:
     - target: {fileID: 2300872734361851953, guid: ecdbf3dc6204e7a46943712ecfb94c12,
         type: 3}
       propertyPath: m_RequestedTrackingOriginMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232745470614056090, guid: ecdbf3dc6204e7a46943712ecfb94c12,
+        type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
