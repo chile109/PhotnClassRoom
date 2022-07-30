@@ -58,3 +58,19 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+Assets/Samples.meta
+Assets/Scenes/DeprecatedWorldInteractionDemo/
+Assets/Scenes/WorldInteractionDemo.meta
+Assets/Scenes/WorldInteractionDemo.unity
+Assets/Scenes/WorldInteractionDemo.unity.meta
+Assets/Scenes/WorldInteractionDemo/
+Assets/TextMesh Pro/
+Assets/VR Examples/
+Assets/Photon/
+Assets/Samples/
+Assets/XR/
+Assets/XRI/
+Assets/TextMesh Pro.meta
+Assets/VR Examples.meta
+Assets/XR.meta
+Assets/XRI.meta
