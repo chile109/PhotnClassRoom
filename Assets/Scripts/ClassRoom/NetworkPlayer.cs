@@ -59,27 +59,25 @@ public class NetworkPlayer : MonoBehaviour
 
     public void ClickRollCall()
     {
-        PhotonView photonView = PhotonView.Get(this);
-        photonView.RPC("RollCall", RpcTarget.All);
+        this.photonView.RPC("RollCall", RpcTarget.All);
     }
 
     public void ClickMute()
     {
-        PhotonView photonView = PhotonView.Get(this);
-        photonView.RPC("Mute", RpcTarget.All);
+        this.photonView.RPC("Mute", RpcTarget.All);
     }
 
-
+    #region Photon RPC
 
     [PunRPC]
-    public void RaisedHand()
+    void RaisedHand()
     {
         this.isRaisedHand = !this.isRaisedHand;
         Debug.Log("RaisedHand: " + this.isRaisedHand);
     }
 
     [PunRPC]
-    public void RollCall()
+    void RollCall()
     {
         this.isSpeaker = true;
         this.isRaisedHand = false;
@@ -87,16 +85,19 @@ public class NetworkPlayer : MonoBehaviour
     }
 
     [PunRPC]
-    public void Mute()
+    void Mute()
     {
         this.isSpeaker = false;
+        Debug.Log("OnMute");
     }
+
+    #endregion
 
     void TestRaisedHand()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            photonView.RPC("RaisedHand", RpcTarget.All);
+            this.photonView.RPC("RaisedHand", RpcTarget.All);
         }
     }
 }
