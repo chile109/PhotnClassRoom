@@ -6,7 +6,7 @@ These are pending feature list:
 - [x] Photon PUN2 and Voice2 integration
 - [x] Teacher avatar with rollCall and mute feature
 - [x] Student avatar with raise hand for speak
-- [ ] Lobby room list with login page
+- [x] Lobby room list with login page
 - [ ] Optimization for limit number rendering and voice
 
 ## Getting started
@@ -16,6 +16,13 @@ This projects rely on additional Unity packages that are 2020.3.1f1 verified:
 - [Photon Voice2](https://assetstore.unity.com/packages/tools/audio/photon-voice-2-130518)
 
 ## Project overview
+
+### Login and Guide
+![image](https://user-images.githubusercontent.com/13402112/182193750-dea9b491-02bf-42fd-9d75-d016c44523c1.png)
+1. Enter your nickname and room name for player data.
+2. Click button to host your own classroom and become teacher.
+3. Check current classroom list and just click the room name you like to join as a student.
+4. Refer to guide conrol page to know how to interaction.
 
 ### BunnyStudent
 ![image](https://user-images.githubusercontent.com/13402112/182073693-985cc3b9-609e-4257-b6ff-7a67947323e3.png)
