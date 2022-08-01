@@ -73,7 +73,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public override void OnConnectedToMaster()
     {
-
         LogText("Connected to Master Server. \n");
 
         if (JoinRoomOnStart)
@@ -81,6 +80,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             LogText("Joining Room : <color=aqua>" + JoinRoomName + "</color>");
             PhotonNetwork.JoinRoom(JoinRoomName);
         }
+        else
+        {
+            PhotonNetwork.JoinLobby();
+        }
+
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
