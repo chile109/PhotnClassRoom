@@ -52,6 +52,7 @@ public class ClassManager : MonoBehaviour
             var speakerObj = StudentPrefabPool[StudentPrefabPool.Count - 1];
             speakerObj.SetActive(true);
             player.SetPrefab(speakerObj);
+            StudentPrefabPool.Remove(speakerObj);
         }
     }
 
@@ -61,6 +62,7 @@ public class ClassManager : MonoBehaviour
         {
             player.PlayerPrefab.SetActive(false);
             player.PlayerPrefab.transform.SetParent(this.transform);
+            StudentPrefabPool.Add(player.PlayerPrefab);
             player.ClearPrefab();
             SpeakerList.Remove(player);
         }
