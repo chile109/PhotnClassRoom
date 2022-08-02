@@ -109,10 +109,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         GameObject player = PhotonNetwork.Instantiate(prefabName, SpawnTransform.position, Quaternion.identity, 0, data);
         player.transform.SetParent(SpawnTransform);
         player.transform.localPosition = new Vector3(0, 0, -1);
-
-        var controller = player.GetComponent<NetworkPlayer>();
-        controller.NickName = PhotonNetwork.LocalPlayer.NickName;
-        controller.ID = PhotonNetwork.LocalPlayer.ActorNumber;
     }
 
     public override void OnDisconnected(DisconnectCause cause)
