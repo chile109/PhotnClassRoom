@@ -9,10 +9,6 @@ using UnityEngine.InputSystem;
 
 public class NetworkPlayer : MonoBehaviour
 {
-    public string NickName = "Player";
-
-    public int ID = 0;
-
     public GameObject PlayerPrefab;
 
     private Canvas canvas;
@@ -44,6 +40,15 @@ public class NetworkPlayer : MonoBehaviour
         if (this.canvas != null && this.canvas.worldCamera == null) { this.canvas.worldCamera = Camera.main; }
         this.photonView = this.GetComponent<PhotonView>();
         this.photonVoiceView = this.GetComponentInParent<PhotonVoiceView>();
+        this.infoText.text = this.photonView.Owner.NickName + "_" + this.photonView.Owner.UserId;
+
+        isSpeaker = this.photonView.Owner.CustomProperties["isSpeaker"] == null ? false : (bool)this.photonView.Owner.CustomProperties["isSpeaker"];
+
+        if (isSpeaker)
+        {
+            ClassManager.Instance.AddSpeaker(this);
+        }
+
         RaiseHandAction.action.performed += TryRaisedHand;
     }
 
@@ -58,7 +63,6 @@ public class NetworkPlayer : MonoBehaviour
         this.bubleSprite.enabled = this.isRaisedHand && !this.isSpeaker;
         this.speakerSprite.enabled = this.isSpeaker;
         this.speakerSprite.color = this.photonVoiceView.IsSpeaking ? Color.red : Color.black;
-        this.infoText.text = NickName + "_" + this.ID;
 
         if (this.photonView.IsMine)
         {
@@ -103,6 +107,7 @@ public class NetworkPlayer : MonoBehaviour
     {
         this.isSpeaker = true;
         this.isRaisedHand = false;
+        PhotonNetwork.LocalPlayer.SetCustomProperties(new ExitGames.Client.Photon.Hashtable() { { "isSpeaker", true } });
         ClassManager.Instance.AddSpeaker(this);
         Debug.Log("OnRollCall");
     }
@@ -111,6 +116,7 @@ public class NetworkPlayer : MonoBehaviour
     void Mute()
     {
         this.isSpeaker = false;
+        PhotonNetwork.LocalPlayer.SetCustomProperties(new ExitGames.Client.Photon.Hashtable() { { "isSpeaker", false } });
         ClassManager.Instance.RemoveSpeaker(this);
         Debug.Log("OnMute");
     }
