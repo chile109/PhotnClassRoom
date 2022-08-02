@@ -157,6 +157,8 @@ MonoBehaviour:
   infoText: {fileID: 3983535009884169250}
   isRaisedHand: 0
   isSpeaker: 1
+  RaiseHandAction: {fileID: -160020527567978557, guid: da2b439d1a2de5c46a4f428f8cf4fe19,
+    type: 3}
 --- !u!1 &100002
 GameObject:
   m_ObjectHideFlags: 0
