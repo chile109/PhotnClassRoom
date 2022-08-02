@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using Photon.Voice.PUN;
 using Photon.Pun;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class NetworkPlayer : MonoBehaviour
 {
@@ -33,6 +34,7 @@ public class NetworkPlayer : MonoBehaviour
     [SerializeField]
     private bool isSpeaker = false;
 
+    public InputActionReference RaiseHandAction;
 
     void Awake()
     {
@@ -40,6 +42,12 @@ public class NetworkPlayer : MonoBehaviour
         if (this.canvas != null && this.canvas.worldCamera == null) { this.canvas.worldCamera = Camera.main; }
         this.photonView = this.GetComponent<PhotonView>();
         this.photonVoiceView = this.GetComponentInParent<PhotonVoiceView>();
+        RaiseHandAction.action.performed += TryRaisedHand;
+    }
+
+    private void OnDestroy()
+    {
+        RaiseHandAction.action.performed -= TryRaisedHand;
     }
 
     // Update is called once per frame
@@ -49,10 +57,11 @@ public class NetworkPlayer : MonoBehaviour
         this.speakerSprite.enabled = this.isSpeaker;
         this.speakerSprite.color = this.photonVoiceView.IsSpeaking ? Color.red : Color.black;
         this.infoText.text = NickName + "_" + this.ID;
-        this.photonVoiceView.RecorderInUse.IsRecording = this.isSpeaker;
+
 
         if (this.photonView.IsMine)
         {
+            this.photonVoiceView.RecorderInUse.IsRecording = this.isSpeaker;
             TestRaisedHand();
         }
     }
@@ -99,5 +108,11 @@ public class NetworkPlayer : MonoBehaviour
         {
             this.photonView.RPC("RaisedHand", RpcTarget.All);
         }
+    }
+
+    void TryRaisedHand(InputAction.CallbackContext context)
+    {
+        Debug.Log("TryRaisedHand");
+        this.photonView.RPC("RaisedHand", RpcTarget.All);
     }
 }
