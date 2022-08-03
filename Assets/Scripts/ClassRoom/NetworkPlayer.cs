@@ -116,7 +116,7 @@ public class NetworkPlayer : BaseNetworkPlayer
     void RaisedHand()
     {
         this.isRaisedHand = !this.isRaisedHand;
-        PhotonNetwork.LocalPlayer.SetCustomProperties(new ExitGames.Client.Photon.Hashtable() { { "isSpeaker", this.isRaisedHand } });
+        PhotonNetwork.LocalPlayer.SetCustomProperties(new ExitGames.Client.Photon.Hashtable() { { "isRaisedHand", this.isRaisedHand } });
         Debug.Log("RaisedHand: " + this.isRaisedHand);
     }
 
