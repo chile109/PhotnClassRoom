@@ -7,24 +7,18 @@ using Photon.Pun;
 using TMPro;
 using UnityEngine.InputSystem;
 
-public class NetworkPlayer : MonoBehaviour
+public class NetworkPlayer : BaseNetworkPlayer
 {
     public GameObject PlayerPrefab;
-
-    private Canvas canvas;
-
-    private PhotonView photonView;
-
-    private PhotonVoiceView photonVoiceView;
 
     [SerializeField]
     private Image bubleSprite;
 
     [SerializeField]
-    private Image speakerSprite;
+    private Button bubbleBtn;
 
     [SerializeField]
-    private TMP_Text infoText;
+    private Button speakerBtn;
 
     [SerializeField]
     private bool isRaisedHand = false;
@@ -34,14 +28,11 @@ public class NetworkPlayer : MonoBehaviour
 
     public InputActionReference RaiseHandAction;
 
-    void Awake()
+    protected override void Awake()
     {
-        this.canvas = this.GetComponent<Canvas>();
-        if (this.canvas != null && this.canvas.worldCamera == null) { this.canvas.worldCamera = Camera.main; }
-        this.photonView = this.GetComponent<PhotonView>();
-        this.photonVoiceView = this.GetComponentInParent<PhotonVoiceView>();
-        this.infoText.text = this.photonView.Owner.NickName + "_" + this.photonView.Owner.UserId;
+        base.Awake();
 
+        isRaisedHand = this.photonView.Owner.CustomProperties["isRaisedHand"] == null ? false : (bool)this.photonView.Owner.CustomProperties["isRaisedHand"];
         isSpeaker = this.photonView.Owner.CustomProperties["isSpeaker"] == null ? false : (bool)this.photonView.Owner.CustomProperties["isSpeaker"];
 
         if (isSpeaker)
@@ -49,25 +40,40 @@ public class NetworkPlayer : MonoBehaviour
             ClassManager.Instance.AddSpeaker(this);
         }
 
-        RaiseHandAction.action.performed += TryRaisedHand;
+        if (this.photonView.IsMine)
+        {
+            RaiseHandAction.action.performed += this.TryRaisedHand;
+        }
+        else
+        {
+            // If we are the teacher, we have full feature to interact with the student.
+            if (PhotonNetwork.IsMasterClient)
+            {
+                SetButtonCallback();
+            }
+        }
     }
 
     private void OnDestroy()
     {
-        RaiseHandAction.action.performed -= TryRaisedHand;
+        if (this.photonView.IsMine)
+        {
+            RaiseHandAction.action.performed -= this.TryRaisedHand;
+        }
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         this.bubleSprite.enabled = this.isRaisedHand && !this.isSpeaker;
         this.speakerSprite.enabled = this.isSpeaker;
-        this.speakerSprite.color = this.photonVoiceView.IsSpeaking ? Color.red : Color.black;
 
         if (this.photonView.IsMine)
         {
             this.photonVoiceView.RecorderInUse.IsRecording = this.isSpeaker;
         }
+
+        base.Update();
     }
 
     public void SetPrefab(GameObject prefab)
@@ -76,6 +82,12 @@ public class NetworkPlayer : MonoBehaviour
         prefab.transform.SetParent(this.transform);
         prefab.transform.localPosition = Vector3.zero;
         prefab.transform.localEulerAngles = Vector3.zero;
+    }
+
+    public void SetButtonCallback()
+    {
+        bubbleBtn.onClick.AddListener(this.ClickRollCall);
+        speakerBtn.onClick.AddListener(this.ClickMute);
     }
 
     public void ClearPrefab()
@@ -93,12 +105,18 @@ public class NetworkPlayer : MonoBehaviour
         this.photonView.RPC("Mute", RpcTarget.All);
     }
 
+    private void TryRaisedHand(InputAction.CallbackContext context)
+    {
+        XRInputNotifyCenter.NotifyEvent("raisehand", this.photonView);
+    }
+
     #region Photon RPC
 
     [PunRPC]
     void RaisedHand()
     {
         this.isRaisedHand = !this.isRaisedHand;
+        PhotonNetwork.LocalPlayer.SetCustomProperties(new ExitGames.Client.Photon.Hashtable() { { "isRaisedHand", this.isRaisedHand } });
         Debug.Log("RaisedHand: " + this.isRaisedHand);
     }
 
@@ -122,9 +140,4 @@ public class NetworkPlayer : MonoBehaviour
     }
 
     #endregion
-
-    void TryRaisedHand(InputAction.CallbackContext context)
-    {
-        this.photonView.RPC("RaisedHand", RpcTarget.All);
-    }
 }

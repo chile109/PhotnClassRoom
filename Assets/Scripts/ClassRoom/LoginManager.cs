@@ -40,7 +40,7 @@ public class LoginManager : MonoBehaviourPunCallbacks
         {
             var r = Instantiate(RoomItemPrefab, RoomContent);
             RoomList.Add(r);
-            r.SetRoomName(roomList[i].Name);
+            r.SetRoomData(roomList[i], UserName.text);
         }
     }
 }

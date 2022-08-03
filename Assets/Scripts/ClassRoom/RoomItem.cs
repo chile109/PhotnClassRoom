@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+using Photon.Realtime;
 
 public class RoomItem : MonoBehaviour
 {
     [SerializeField]
     private string m_roomName = "";
 
-    public void SetRoomName(string roomName)
+    public void SetRoomData(RoomInfo room, string nickName)
     {
-        m_roomName = roomName;
-        GetComponentInChildren<Text>().text = roomName;
+        m_roomName = room.Name;
+        PhotonNetwork.NickName = nickName;
+        GetComponentInChildren<Text>().text = room.Name + " (" + room.PlayerCount + "/" + room.MaxPlayers + ")";
     }
 
     public void JoinRoom()
