@@ -42,6 +42,7 @@ public class NetworkPlayer : MonoBehaviour
         this.photonVoiceView = this.GetComponentInParent<PhotonVoiceView>();
         this.infoText.text = this.photonView.Owner.NickName + "_" + this.photonView.Owner.UserId;
 
+        isRaisedHand = this.photonView.Owner.CustomProperties["isRaisedHand"] == null ? false : (bool)this.photonView.Owner.CustomProperties["isRaisedHand"];
         isSpeaker = this.photonView.Owner.CustomProperties["isSpeaker"] == null ? false : (bool)this.photonView.Owner.CustomProperties["isSpeaker"];
 
         if (isSpeaker)
@@ -99,6 +100,7 @@ public class NetworkPlayer : MonoBehaviour
     void RaisedHand()
     {
         this.isRaisedHand = !this.isRaisedHand;
+        PhotonNetwork.LocalPlayer.SetCustomProperties(new ExitGames.Client.Photon.Hashtable() { { "isSpeaker", this.isRaisedHand } });
         Debug.Log("RaisedHand: " + this.isRaisedHand);
     }
 
