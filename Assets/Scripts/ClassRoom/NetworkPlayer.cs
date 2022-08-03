@@ -15,6 +15,12 @@ public class NetworkPlayer : BaseNetworkPlayer
     private Image bubleSprite;
 
     [SerializeField]
+    private Button bubbleBtn;
+
+    [SerializeField]
+    private Button speakerBtn;
+
+    [SerializeField]
     private bool isRaisedHand = false;
 
     [SerializeField]
@@ -37,6 +43,14 @@ public class NetworkPlayer : BaseNetworkPlayer
         if (this.photonView.IsMine)
         {
             RaiseHandAction.action.performed += this.TryRaisedHand;
+        }
+        else
+        {
+            // If we are the teacher, we have full feature to interact with the student.
+            if (PhotonNetwork.IsMasterClient)
+            {
+                SetButtonCallback();
+            }
         }
     }
 
@@ -68,7 +82,12 @@ public class NetworkPlayer : BaseNetworkPlayer
         prefab.transform.SetParent(this.transform);
         prefab.transform.localPosition = Vector3.zero;
         prefab.transform.localEulerAngles = Vector3.zero;
+    }
 
+    public void SetButtonCallback()
+    {
+        bubbleBtn.onClick.AddListener(this.ClickRollCall);
+        speakerBtn.onClick.AddListener(this.ClickMute);
     }
 
     public void ClearPrefab()

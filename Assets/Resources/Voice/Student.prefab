@@ -267,19 +267,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6857432632067491448}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2477757760981931042}
-        m_TargetAssemblyTypeName: NetworkPlayer, Assembly-CSharp
-        m_MethodName: ClickRollCall
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &6825564824992450778
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,19 +387,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6856129195891943676}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2477757760981931042}
-        m_TargetAssemblyTypeName: NetworkPlayer, Assembly-CSharp
-        m_MethodName: ClickMute
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &6826190189897226070
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,6 +832,8 @@ MonoBehaviour:
   infoText: {fileID: 1860599622571783171}
   PlayerPrefab: {fileID: 0}
   bubleSprite: {fileID: 6857432632067491448}
+  bubbleBtn: {fileID: 7388862161664856159}
+  speakerBtn: {fileID: 3299261551385350276}
   isRaisedHand: 0
   isSpeaker: 0
   RaiseHandAction: {fileID: -6131295136447488360, guid: c348712bda248c246b8c49b3db54643f,
