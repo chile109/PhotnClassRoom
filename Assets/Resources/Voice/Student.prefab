@@ -852,12 +852,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdd38a52125ed1d4088154e6048013f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NickName: Player
-  ID: 0
-  PlayerPrefab: {fileID: 0}
-  bubleSprite: {fileID: 6857432632067491448}
   speakerSprite: {fileID: 6856129195891943676}
   infoText: {fileID: 1860599622571783171}
+  PlayerPrefab: {fileID: 0}
+  bubleSprite: {fileID: 6857432632067491448}
   isRaisedHand: 0
   isSpeaker: 0
   RaiseHandAction: {fileID: -6131295136447488360, guid: c348712bda248c246b8c49b3db54643f,

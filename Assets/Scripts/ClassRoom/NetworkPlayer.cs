@@ -7,24 +7,12 @@ using Photon.Pun;
 using TMPro;
 using UnityEngine.InputSystem;
 
-public class NetworkPlayer : MonoBehaviour
+public class NetworkPlayer : BaseNetworkPlayer
 {
     public GameObject PlayerPrefab;
 
-    private Canvas canvas;
-
-    private PhotonView photonView;
-
-    private PhotonVoiceView photonVoiceView;
-
     [SerializeField]
     private Image bubleSprite;
-
-    [SerializeField]
-    private Image speakerSprite;
-
-    [SerializeField]
-    private TMP_Text infoText;
 
     [SerializeField]
     private bool isRaisedHand = false;
@@ -34,13 +22,9 @@ public class NetworkPlayer : MonoBehaviour
 
     public InputActionReference RaiseHandAction;
 
-    void Awake()
+    protected override void Awake()
     {
-        this.canvas = this.GetComponent<Canvas>();
-        if (this.canvas != null && this.canvas.worldCamera == null) { this.canvas.worldCamera = Camera.main; }
-        this.photonView = this.GetComponent<PhotonView>();
-        this.photonVoiceView = this.GetComponentInParent<PhotonVoiceView>();
-        this.infoText.text = this.photonView.Owner.NickName + "_" + this.photonView.Owner.UserId;
+        base.Awake();
 
         isRaisedHand = this.photonView.Owner.CustomProperties["isRaisedHand"] == null ? false : (bool)this.photonView.Owner.CustomProperties["isRaisedHand"];
         isSpeaker = this.photonView.Owner.CustomProperties["isSpeaker"] == null ? false : (bool)this.photonView.Owner.CustomProperties["isSpeaker"];
@@ -59,16 +43,17 @@ public class NetworkPlayer : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         this.bubleSprite.enabled = this.isRaisedHand && !this.isSpeaker;
         this.speakerSprite.enabled = this.isSpeaker;
-        this.speakerSprite.color = this.photonVoiceView.IsSpeaking ? Color.red : Color.black;
 
         if (this.photonView.IsMine)
         {
             this.photonVoiceView.RecorderInUse.IsRecording = this.isSpeaker;
         }
+
+        base.Update();
     }
 
     public void SetPrefab(GameObject prefab)
