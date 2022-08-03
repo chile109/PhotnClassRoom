@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class ClassManager : MonoBehaviour
+public class ClassManager : MonoBehaviour, IEventListener
 {
     static ClassManager _instance = null;
 
@@ -32,6 +33,8 @@ public class ClassManager : MonoBehaviour
 
     private void Awake()
     {
+        XRInputNotifyCenter.AttachListener("raisehand", this);
+
         for (int i = 0; i < maxSpeakersPerRoom; i++)
         {
             StudentPrefabPool[i].SetActive(false);
@@ -66,5 +69,20 @@ public class ClassManager : MonoBehaviour
             player.ClearPrefab();
             SpeakerList.Remove(player);
         }
+    }
+
+    public void OnEvent(EventArgs args)
+    {
+        switch (args.EventName)
+        {
+            case "raisehand":
+                args.PhotonView.RPC("RaisedHand", RpcTarget.All);
+                break;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        XRInputNotifyCenter.DetachListener("raisehand", this);
     }
 }

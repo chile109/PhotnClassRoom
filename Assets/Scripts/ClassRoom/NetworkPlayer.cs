@@ -34,12 +34,18 @@ public class NetworkPlayer : BaseNetworkPlayer
             ClassManager.Instance.AddSpeaker(this);
         }
 
-        RaiseHandAction.action.performed += TryRaisedHand;
+        if (this.photonView.IsMine)
+        {
+            RaiseHandAction.action.performed += this.TryRaisedHand;
+        }
     }
 
     private void OnDestroy()
     {
-        RaiseHandAction.action.performed -= TryRaisedHand;
+        if (this.photonView.IsMine)
+        {
+            RaiseHandAction.action.performed -= this.TryRaisedHand;
+        }
     }
 
     // Update is called once per frame
@@ -62,6 +68,7 @@ public class NetworkPlayer : BaseNetworkPlayer
         prefab.transform.SetParent(this.transform);
         prefab.transform.localPosition = Vector3.zero;
         prefab.transform.localEulerAngles = Vector3.zero;
+
     }
 
     public void ClearPrefab()
@@ -77,6 +84,11 @@ public class NetworkPlayer : BaseNetworkPlayer
     public void ClickMute()
     {
         this.photonView.RPC("Mute", RpcTarget.All);
+    }
+
+    private void TryRaisedHand(InputAction.CallbackContext context)
+    {
+        XRInputNotifyCenter.NotifyEvent("raisehand", this.photonView);
     }
 
     #region Photon RPC
@@ -109,9 +121,4 @@ public class NetworkPlayer : BaseNetworkPlayer
     }
 
     #endregion
-
-    void TryRaisedHand(InputAction.CallbackContext context)
-    {
-        this.photonView.RPC("RaisedHand", RpcTarget.All);
-    }
 }
