@@ -348,7 +348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba8a4ecbe54385e4788ca9cc5b658d4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxPlayersPerRoom: 10
+  maxPlayersPerRoom: 15
   JoinRoomOnStart: 0
   dontDestroyOnLoad: 1
   JoinRoomName: RandomRoom
