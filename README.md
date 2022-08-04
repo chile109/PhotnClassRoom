@@ -1,5 +1,7 @@
 # PhotnClassRoom
-This is VR experience class room for voice presentation. The scenario is like ClubHouse that teacher can hold a class room that student can join it to hear, but they are all in a VR place that support HMD interaction. Also teacher can pick some student to be the speaker, both support mute feature.
+![image](https://user-images.githubusercontent.com/13402112/182757650-9650969b-c353-40e5-a38d-8ebafffd12e7.png)
+
+This is VR experience class room for voice presentation. The scenario is like ClubHouse that teacher can hold a class room that student can join it to hear lessons, and they are all in a VR place that support HMD interaction. Also teachers can pick some student to be the speaker, both support mute feature.
 
 These are pending feature list:
 - [x] XR Interaction toolkit integration
@@ -8,21 +10,23 @@ These are pending feature list:
 - [x] Student avatar with raise hand for speak
 - [x] Lobby room list with login page
 - [x] Optimization for limit number rendering and voice
-- [ ] Export and Debug
+- [x] Decorate Environment
+- [x] Export WIN/AOS and test on Quest2
 
 ## Getting started
 ### Preview package
 This projects rely on additional Unity packages that are 2020.3.1f1 verified:
 - [XR Interaction Toolkit and Examples](https://github.com/Unity-Technologies/XR-Interaction-Toolkit-Examples)
 - [Photon Voice2](https://assetstore.unity.com/packages/tools/audio/photon-voice-2-130518)
+- [pixel horror abandoned classroom](https://assetstore.unity.com/packages/3d/environments/urban/pixel-horror-abandoned-classroom-218424#description0
 
 ## Project overview
 
 ### Login and Guide
 ![image](https://user-images.githubusercontent.com/13402112/182193750-dea9b491-02bf-42fd-9d75-d016c44523c1.png)
-1. Enter your nickname and room name for player data.
+1. Enter your nickname and room name in the input area as playerdata.
 2. Click button to host your own classroom and become teacher.
-3. Check current classroom list and just click the room name you like to join as a student.
+3. Or you can check current classroom list and just click the room name you like to join as a student.
 4. Refer to guide conrol page to know how to interaction.
 
 ### Classroom
