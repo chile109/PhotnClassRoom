@@ -67,7 +67,7 @@ public class NetworkPlayer : BaseNetworkPlayer
     {
         this.bubleSprite.enabled = this.isRaisedHand && !this.isSpeaker;
         this.speakerSprite.enabled = this.isSpeaker;
-        this.photonVoiceView.RecorderInUse.enabled = this.isSpeaker;
+        this.photonVoiceView.RecorderInUse.IsRecording = this.isSpeaker;
 
         base.Update();
     }
