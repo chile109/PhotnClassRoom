@@ -214,6 +214,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5697391454159744472, guid: 401c55504cb5f1245bfdcdcb2f1bb6e2,
         type: 3}
+      propertyPath: recordOnlyWhenJoined
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5697391454159744472, guid: 401c55504cb5f1245bfdcdcb2f1bb6e2,
+        type: 3}
+      propertyPath: recordOnlyWhenEnabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5697391454159744472, guid: 401c55504cb5f1245bfdcdcb2f1bb6e2,
+        type: 3}
       propertyPath: photonMicrophoneDeviceId
       value: 0
       objectReference: {fileID: 0}
@@ -3713,6 +3723,25 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8215401341955652337, guid: 761dbd58ca666b640b2c2422acf3fff2,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 255.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 8215401341955652337, guid: 761dbd58ca666b640b2c2422acf3fff2,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.2899933
+      objectReference: {fileID: 0}
+    - target: {fileID: 8215401341955652338, guid: 761dbd58ca666b640b2c2422acf3fff2,
+        type: 3}
+      propertyPath: m_Text
+      value: "Default controls: \n\nUse the Trigger button to interact with UI.\n\nUse
+        left raycast click on student bubble icon to give speaker seat.\n\nUse left
+        raycast click on student speaker icon to remove speaker seat and mute.\n\nUse
+        the Thumbstick to move and turn.\n\nUse the Grip button and display request
+        buuble icon to raise hand.\n\n\n\n\n\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 8215401341983458609, guid: 761dbd58ca666b640b2c2422acf3fff2,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -3837,6 +3866,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Login UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 8215401342190250660, guid: 761dbd58ca666b640b2c2422acf3fff2,
+        type: 3}
+      propertyPath: m_ChildForceExpandHeight
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8215401342634383142, guid: 761dbd58ca666b640b2c2422acf3fff2,
         type: 3}

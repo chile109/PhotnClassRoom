@@ -27,6 +27,7 @@ public class BaseNetworkPlayer : MonoBehaviour
         this.photonView = this.GetComponent<PhotonView>();
         this.photonVoiceView = this.GetComponentInParent<PhotonVoiceView>();
         this.infoText.text = this.photonView.Owner.NickName;
+        this.photonVoiceView.RecorderInUse = PhotonVoiceNetwork.Instance.PrimaryRecorder;
     }
 
     // Update is called once per frame
