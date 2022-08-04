@@ -13,12 +13,15 @@ These are pending feature list:
 - [x] Decorate Environment
 - [x] Export WIN/AOS and test on Quest2
 
+> Demo support 2 plateform WIN/AOS, note that only AOS can open virtual keyboard for text input
+> Download here:　https://drive.google.com/file/d/1pDZYXl9zkXsfjbDacel3RC69FqJP0dXz/view?usp=sharing
+
 ## Getting started
-### Preview package
+### Rely package
 This projects rely on additional Unity packages that are 2020.3.1f1 verified:
 - [XR Interaction Toolkit and Examples](https://github.com/Unity-Technologies/XR-Interaction-Toolkit-Examples)
 - [Photon Voice2](https://assetstore.unity.com/packages/tools/audio/photon-voice-2-130518)
-- [pixel horror abandoned classroom](https://assetstore.unity.com/packages/3d/environments/urban/pixel-horror-abandoned-classroom-218424#description0
+- [pixel horror abandoned classroom](https://assetstore.unity.com/packages/3d/environments/urban/pixel-horror-abandoned-classroom-218424#description0)
 
 ## Project overview
 
